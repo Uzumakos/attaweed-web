@@ -72,29 +72,29 @@ const Dashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <aside className="w-72 bg-islamic-dark text-white flex flex-col fixed inset-y-0 left-0 z-50 arabesque-pattern-dark">
+      <aside className="w-72 bg-white border-r border-gray-100 text-soft-black flex flex-col fixed inset-y-0 left-0 z-50 arabesque-pattern">
         <div className="p-8 flex items-center gap-3">
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-islamic-green">
+          <div className="w-10 h-10 bg-islamic-green rounded-full flex items-center justify-center text-white">
             <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
               <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z" />
             </svg>
           </div>
           <div>
-            <h1 className="font-serif font-bold text-lg leading-tight">AT-TAWHEED</h1>
-            <p className="text-[10px] tracking-widest uppercase opacity-60">ADMIN PANEL</p>
+            <h1 className="font-serif font-bold text-lg leading-tight text-soft-black">AT-TAWHEED</h1>
+            <p className="text-[10px] tracking-widest uppercase text-gray-400">ADMIN PANEL</p>
           </div>
         </div>
 
         <nav className="flex-grow px-4 py-6 space-y-2">
           <Link
             to="/"
-            className="w-full flex items-center gap-4 px-4 py-3 rounded-xl font-medium text-white/60 hover:bg-white/10 hover:text-white transition-all group mb-4"
+            className="w-full flex items-center gap-4 px-4 py-3 rounded-xl font-medium text-soft-black hover:bg-gray-100 transition-all group mb-4"
           >
-            <Globe className="w-5 h-5 text-white/40 group-hover:text-white/80" />
+            <Globe className="w-5 h-5 text-gray-400 group-hover:text-islamic-green" />
             Voir le site
           </Link>
 
-          <div className="h-px bg-white/10 mx-4 mb-4" />
+          <div className="h-px bg-gray-100 mx-4 mb-4" />
 
           {sidebarItems.map((item) => (
             <button
@@ -104,21 +104,21 @@ const Dashboard: React.FC = () => {
                 "w-full flex items-center gap-4 px-4 py-3 rounded-xl font-medium transition-all group",
                 activeTab === item.id 
                   ? "bg-islamic-green text-white shadow-lg" 
-                  : "text-white/60 hover:bg-white/10 hover:text-white"
+                  : "text-soft-black hover:bg-gray-100"
               )}
             >
-              <item.icon className={cn("w-5 h-5", activeTab === item.id ? "text-islamic-gold" : "text-white/40 group-hover:text-white/80")} />
+              <item.icon className={cn("w-5 h-5", activeTab === item.id ? "text-islamic-gold" : "text-gray-400 group-hover:text-islamic-green")} />
               {item.name}
             </button>
           ))}
         </nav>
 
-        <div className="p-4 border-t border-white/10">
+        <div className="p-4 border-t border-gray-100">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-4 px-4 py-3 rounded-xl font-medium text-white/60 hover:bg-red-500/10 hover:text-red-500 transition-all"
+            className="w-full flex items-center gap-4 px-4 py-3 rounded-xl font-medium text-soft-black hover:bg-red-50 hover:text-red-600 transition-all"
           >
-            <LogOut className="w-5 h-5" />
+            <LogOut className="w-5 h-5 text-gray-400 group-hover:text-red-600" />
             Déconnexion
           </button>
         </div>

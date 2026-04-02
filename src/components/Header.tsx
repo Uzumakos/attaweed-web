@@ -42,7 +42,7 @@ const Header: React.FC = () => {
               <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z" />
             </svg>
           </div>
-          <div className={cn("hidden sm:block", isScrolled ? "text-soft-black" : "text-white")}>
+          <div className={cn("hidden sm:block", "text-soft-black")}>
             <h1 className="font-serif font-bold text-lg leading-tight">MOSQUÉE AT-TAWHEED</h1>
             <p className="text-[10px] tracking-widest uppercase opacity-80">Pétion-Ville, Haïti</p>
           </div>
@@ -58,7 +58,7 @@ const Header: React.FC = () => {
                 "font-medium transition-colors hover:text-islamic-gold",
                 location.pathname === link.path 
                   ? "text-islamic-gold" 
-                  : isScrolled ? "text-soft-black" : "text-white"
+                  : "text-soft-black"
               )}
             >
               {link.name}
@@ -69,7 +69,7 @@ const Header: React.FC = () => {
               to="/admin" 
               className={cn(
                 "font-medium transition-colors hover:text-islamic-gold",
-                isScrolled ? "text-soft-black" : "text-white"
+                "text-soft-black"
               )}
             >
               Admin
@@ -79,7 +79,7 @@ const Header: React.FC = () => {
 
         {/* Actions */}
         <div className="flex items-center gap-4">
-          <div className={cn("hidden md:flex flex-col items-end", isScrolled ? "text-soft-black" : "text-white")}>
+          <div className={cn("hidden md:flex flex-col items-end", "text-soft-black")}>
             <div className="flex items-center gap-1 text-xs font-medium">
               <Clock className="w-3 h-3" />
               <span>Prochaine prière: Dhuhr à 12:30</span>
@@ -96,7 +96,7 @@ const Header: React.FC = () => {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={cn("lg:hidden p-2", isScrolled ? "text-soft-black" : "text-white")}
+            className={cn("lg:hidden p-2", "text-soft-black")}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
