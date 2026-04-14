@@ -43,7 +43,7 @@ const Header: React.FC = () => {
             </svg>
           </div>
           <div className={cn("hidden sm:block", "text-soft-black")}>
-            <h1 className="font-serif font-bold text-lg leading-tight">MOSQUÉE AT-TAWHEED</h1>
+            <h1 className="font-serif font-bold text-lg leading-tight">MOSQUÉE ATTAWHEED</h1>
             <p className="text-[10px] tracking-widest uppercase opacity-80">Pétion-Ville, Haïti</p>
           </div>
         </Link>

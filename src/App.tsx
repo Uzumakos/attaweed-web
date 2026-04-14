@@ -10,6 +10,7 @@ import Multimedia from './pages/Multimedia';
 import About from './pages/About';
 import Donation from './pages/Donation';
 import Contact from './pages/Contact';
+import Actualites from './pages/Actualites';
 
 // Admin Pages
 import Login from './pages/Admin/Login';
@@ -39,6 +40,8 @@ export default function App() {
           <Route path="/about" element={<Layout><About /></Layout>} />
           <Route path="/donation" element={<Layout><Donation /></Layout>} />
           <Route path="/contact" element={<Layout><Contact /></Layout>} />
+          <Route path="/actualites" element={<Layout><Actualites /></Layout>} />
+          <Route path="/actualites/:slug" element={<Layout><Actualites /></Layout>} />
 
           {/* Admin Routes */}
           <Route path="/admin/login" element={<Login />} />

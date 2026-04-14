@@ -66,7 +66,7 @@ const Donation: React.FC = () => {
                   Votre Don fait la <span className="text-islamic-green">Différence</span>
                 </h2>
                 <p className="text-xl text-gray-500 leading-relaxed">
-                  Chaque gourde investie dans la Mosquée At-Tawheed contribue à la pérennité 
+                  Chaque gourde investie dans la Mosquée Attawheed contribue à la pérennité 
                   de notre communauté et au soutien des plus vulnérables.
                 </p>
               </div>

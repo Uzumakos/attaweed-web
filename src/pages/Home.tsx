@@ -9,6 +9,7 @@ import {
 import { cn } from '../lib/utils';
 import VersetCoranCard from '../components/VersetCoranCard';
 import PrayerTimeCard from '../components/PrayerTimeCard';
+import { supabase } from '../supabase';
 
 const Home: React.FC = () => {
   const [nextPrayer, setNextPrayer] = useState({ name: 'Dhuhr', time: '12:30' });
@@ -47,32 +48,37 @@ const Home: React.FC = () => {
     },
   ];
 
-  const news = [
-    {
-      id: 1,
-      title: 'Préparations pour le Ramadan 2026',
-      excerpt: 'Découvrez notre programme spécial pour le mois béni : Iftars communautaires et Tarawih.',
-      date: '15 Mars 2026',
-      category: 'Ramadan',
-      imageUrl: 'https://picsum.photos/seed/ramadan/800/600',
-    },
-    {
-      id: 2,
-      title: 'Nouveau cours d\'Arabe pour débutants',
-      excerpt: 'Inscriptions ouvertes pour la session de printemps. Apprenez à lire le Coran en 3 mois.',
-      date: '10 Mars 2026',
-      category: 'Éducation',
-      imageUrl: 'https://picsum.photos/seed/arabic/800/600',
-    },
-    {
-      id: 3,
-      title: 'Rénovation de la salle de prière des femmes',
-      excerpt: 'Grâce à vos dons, les travaux avancent. Découvrez les premières images du projet.',
-      date: '05 Mars 2026',
-      category: 'Actualité',
-      imageUrl: 'https://picsum.photos/seed/mosque/800/600',
-    },
-  ];
+  interface NewsArticle {
+    id: string;
+    title: string;
+    excerpt: string;
+    published_at: string;
+    category: string;
+    image_url: string;
+    slug: string;
+  }
+
+  const [news, setNews] = useState<NewsArticle[]>([]);
+  const [newsLoading, setNewsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const { data } = await supabase
+          .from('news_articles')
+          .select('id, title, excerpt, published_at, category, image_url, slug')
+          .eq('status', 'Publié')
+          .order('published_at', { ascending: false })
+          .limit(3);
+        setNews(data || []);
+      } catch {
+        setNews([]);
+      } finally {
+        setNewsLoading(false);
+      }
+    };
+    fetchNews();
+  }, []);
 
   return (
     <div className="space-y-0">
@@ -106,7 +112,7 @@ const Home: React.FC = () => {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-serif font-bold leading-tight">
-              Bienvenue à la <span className="text-islamic-gold">Mosquée At-Tawheed</span>
+              Bienvenue à la <span className="text-islamic-gold">Mosquée Attawheed</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-200 font-light max-w-2xl mx-auto">
@@ -177,7 +183,7 @@ const Home: React.FC = () => {
             <div className="max-w-2xl">
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-soft-black mb-4">Nos Services & Activités</h2>
               <p className="text-gray-600 text-lg">
-                La Mosquée At-Tawheed n'est pas seulement un lieu de prière, c'est un centre communautaire 
+                La Mosquée Attawheed n'est pas seulement un lieu de prière, c'est un centre communautaire 
                 dédié au bien-être spirituel et social de tous.
               </p>
             </div>
@@ -232,54 +238,84 @@ const Home: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-soft-black">Actualités & Événements</h2>
-            <Link to="/multimedia" className="hidden md:flex items-center gap-2 text-islamic-green font-bold hover:gap-3 transition-all">
+            <Link to="/actualites" className="hidden md:flex items-center gap-2 text-islamic-green font-bold hover:gap-3 transition-all">
               Tout voir <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {news.map((item) => (
-              <motion.article 
-                key={item.id}
-                whileHover={{ y: -5 }}
-                className="group bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <img 
-                    src={item.imageUrl} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute top-4 left-4 bg-islamic-green text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                    {item.category}
+          {newsLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="rounded-3xl overflow-hidden border border-gray-100 shadow-sm">
+                  <div className="h-64 bg-gray-100 animate-pulse" />
+                  <div className="p-8 space-y-4">
+                    <div className="h-3 bg-gray-100 rounded-full w-1/3 animate-pulse" />
+                    <div className="h-6 bg-gray-100 rounded-full w-3/4 animate-pulse" />
+                    <div className="h-4 bg-gray-100 rounded-full animate-pulse" />
+                    <div className="h-4 bg-gray-100 rounded-full w-2/3 animate-pulse" />
                   </div>
                 </div>
-                <div className="p-8 space-y-4">
-                  <div className="flex items-center gap-2 text-gray-400 text-sm">
-                    <Calendar className="w-4 h-4" />
-                    <span>{item.date}</span>
+              ))}
+            </div>
+          ) : news.length === 0 ? (
+            <div className="text-center py-20 text-gray-400 space-y-3">
+              <p className="text-5xl">🕌</p>
+              <p className="text-lg font-medium">Aucun article publié pour le moment.</p>
+              <p className="text-sm">Revenez bientôt pour nos actualités.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {news.map((item) => (
+                <motion.article
+                  key={item.id}
+                  whileHover={{ y: -5 }}
+                  className="group bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all"
+                >
+                  <div className="relative h-64 overflow-hidden bg-gray-100">
+                    {item.image_url ? (
+                      <img
+                        src={item.image_url}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        referrerPolicy="no-referrer"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-islamic-green/10 to-islamic-green/5 flex items-center justify-center">
+                        <span className="text-6xl">🕌</span>
+                      </div>
+                    )}
+                    <div className="absolute top-4 left-4 bg-islamic-green text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                      {item.category}
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-serif font-bold group-hover:text-islamic-green transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-500 line-clamp-2">
-                    {item.excerpt}
-                  </p>
-                  <Link 
-                    to={`/news/${item.id}`} 
-                    className="inline-flex items-center gap-2 text-islamic-green font-bold pt-2 group/btn"
-                  >
-                    Lire la suite 
-                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-          
+                  <div className="p-8 space-y-4">
+                    <div className="flex items-center gap-2 text-gray-400 text-sm">
+                      <Calendar className="w-4 h-4" />
+                      <span>
+                        {item.published_at
+                          ? new Date(item.published_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
+                          : ''}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl font-serif font-bold group-hover:text-islamic-green transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-500 line-clamp-2">{item.excerpt}</p>
+                    <Link
+                      to={`/actualites/${item.slug || item.id}`}
+                      className="inline-flex items-center gap-2 text-islamic-green font-bold pt-2 group/btn"
+                    >
+                      Lire la suite
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          )}
+
           <div className="mt-12 text-center md:hidden">
-            <Link to="/multimedia" className="inline-flex items-center gap-2 bg-gray-100 text-soft-black px-8 py-4 rounded-full font-bold">
+            <Link to="/actualites" className="inline-flex items-center gap-2 bg-gray-100 text-soft-black px-8 py-4 rounded-full font-bold">
               Voir toutes les actualités
             </Link>
           </div>
@@ -317,7 +353,7 @@ const Home: React.FC = () => {
                 Soutenez la Maison d'Allah <br /> en Haïti
               </h2>
               <p className="text-xl text-gray-500 leading-relaxed">
-                Votre générosité permet à la Mosquée At-Tawheed de continuer sa mission spirituelle 
+                Votre générosité permet à la Mosquée Attawheed de continuer sa mission spirituelle 
                 et ses actions sociales au service de la Oumma haïtienne.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">

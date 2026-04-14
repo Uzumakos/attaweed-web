@@ -21,7 +21,7 @@ const DonationWidget: React.FC = () => {
         <div className="absolute inset-0 arabesque-pattern-dark opacity-10" />
         <div className="relative z-10 flex items-center justify-between">
           <div className="space-y-1">
-            <h3 className="text-2xl font-serif font-bold">Soutenir At-Tawheed</h3>
+            <h3 className="text-2xl font-serif font-bold">Soutenir Attawheed</h3>
             <p className="text-white/70 text-sm">Étape {step} sur 3</p>
           </div>
           <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">

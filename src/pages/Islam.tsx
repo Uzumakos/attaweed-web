@@ -17,7 +17,7 @@ const Islam: React.FC = () => {
   const tabs = [
     { id: 'piliers', name: 'Les 5 Piliers', icon: Star },
     { id: 'foi', name: 'Les 6 Piliers de la Foi', icon: ShieldCheck },
-    { id: 'coran', name: 'Le Saint Coran', icon: Book },
+    { id: 'coran', name: 'Le Coran', icon: Book },
     { id: 'hadiths', name: 'Hadiths & Sagesse', icon: GraduationCap },
     { id: 'faq', name: 'FAQ Islam', icon: Info },
   ];
@@ -72,7 +72,7 @@ const Islam: React.FC = () => {
   const faqs = [
     {
       q: "Comment devenir musulman ?",
-      a: "Devenir musulman est un acte simple et profond. Il suffit de prononcer la Chahada (l'attestation de foi) avec conviction et sincérité devant des témoins. La Mosquée At-Tawheed vous accompagne dans cette démarche avec bienveillance."
+      a: "Devenir musulman est un acte simple et profond. Il suffit de prononcer la Chahada (l'attestation de foi) avec conviction et sincérité devant des témoins. La Mosquée Attawheed vous accompagne dans cette démarche avec bienveillance."
     },
     {
       q: "Quelles sont les heures d'ouverture de la mosquée ?",
@@ -221,7 +221,7 @@ const Islam: React.FC = () => {
               className="space-y-16"
             >
               <div className="text-center max-w-3xl mx-auto space-y-4">
-                <h2 className="text-4xl font-serif font-bold text-soft-black">Le Saint Coran</h2>
+                <h2 className="text-4xl font-serif font-bold text-soft-black">Le Coran</h2>
                 <p className="text-gray-500 text-lg">
                   La parole d'Allah révélée au Prophète Muhammad (psl), guide et lumière pour l'humanité.
                 </p>

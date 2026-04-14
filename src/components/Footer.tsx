@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
                 </svg>
               </div>
               <div>
-                <h2 className="font-serif font-bold text-xl leading-tight">AT-TAWHEED</h2>
+                <h2 className="font-serif font-bold text-xl leading-tight">ATTAWHEED</h2>
                 <p className="text-[10px] tracking-widest uppercase opacity-80">Mosquée de Pétion-Ville</p>
               </div>
             </Link>
@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-gray-400 text-sm text-center md:text-left">
-            &copy; {currentYear} Mosquée At-Tawheed Haïti. Tous droits réservés.
+            &copy; {currentYear} Mosquée Attawheed Haïti. Tous droits réservés.
           </p>
           <div className="flex gap-6 text-sm text-gray-400">
             <Link to="/mentions-legales" className="hover:text-white transition-colors">Mentions Légales</Link>

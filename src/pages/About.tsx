@@ -10,14 +10,14 @@ import IslamicPattern from '../components/IslamicPattern';
 
 const About: React.FC = () => {
   const team = [
-    { name: 'Imam At-Tawheed', role: 'Imam Principal', bio: 'Guide spirituel et enseignant du Coran depuis 15 ans.', image: 'https://picsum.photos/seed/imam/400/400' },
+    { name: 'Imam Attawheed', role: 'Imam Principal', bio: 'Guide spirituel et enseignant du Coran depuis 15 ans.', image: 'https://picsum.photos/seed/imam/400/400' },
     { name: 'Moussa Jean', role: 'Président', bio: 'Responsable de la gestion administrative et des projets sociaux.', image: 'https://picsum.photos/seed/president/400/400' },
     { name: 'Fatima Louis', role: 'Responsable Femmes', bio: 'Organisatrice des activités éducatives et sociales pour les femmes.', image: 'https://picsum.photos/seed/women/400/400' },
     { name: 'Ibrahim Pierre', role: 'Trésorier', bio: 'Garant de la transparence financière et de la gestion des dons.', image: 'https://picsum.photos/seed/treasurer/400/400' },
   ];
 
   const timeline = [
-    { year: '2010', title: 'Fondation', description: 'Création de la communauté At-Tawheed par un petit groupe de fidèles à Pétion-Ville.' },
+    { year: '2010', title: 'Fondation', description: 'Création de la communauté Attawheed par un petit groupe de fidèles à Pétion-Ville.' },
     { year: '2015', title: 'Inauguration', description: 'Ouverture officielle de la mosquée actuelle après 3 ans de travaux.' },
     { year: '2018', title: 'École Coranique', description: 'Lancement du programme éducatif pour les enfants et les nouveaux convertis.' },
     { year: '2022', title: 'Aide Sociale', description: 'Mise en place du programme de distribution alimentaire hebdomadaire.' },
@@ -37,7 +37,7 @@ const About: React.FC = () => {
           >
             <h1 className="text-5xl md:text-7xl font-serif font-bold">Notre Histoire</h1>
             <p className="text-xl text-white/70 font-light leading-relaxed">
-              Découvrez le parcours de la Mosquée At-Tawheed, un pilier de la foi 
+              Découvrez le parcours de la Mosquée Attawheed, un pilier de la foi 
               et de la solidarité en Haïti depuis plus d'une décennie.
             </p>
           </motion.div>

@@ -8,6 +8,8 @@ interface AuthContextType {
   adminData: AdminUser | null;
   loading: boolean;
   isAdmin: boolean;
+  isSuperAdmin: boolean;
+  signOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -15,6 +17,8 @@ const AuthContext = createContext<AuthContextType>({
   adminData: null,
   loading: true,
   isAdmin: false,
+  isSuperAdmin: false,
+  signOut: async () => {},
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -57,20 +61,31 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         .eq('id', user.id)
         .single();
 
-      if (error) {
-        // Default admin fallback for the specific email
-        if (user.email === 'ernst367@gmail.com') {
+      if (error || !data) {
+        // Fallback: grant Super Admin access for the primary admin email
+        // even if the admins table is missing the row or RLS is blocking.
+        // This ensures the first Super Admin can always log in.
+        const SUPER_ADMIN_EMAIL = 'ernst367@gmail.com';
+        if (user.email === SUPER_ADMIN_EMAIL) {
           setAdminData({
             id: user.id,
-            email: user.email!,
-            displayName: user.user_metadata.full_name || user.email!.split('@')[0],
+            email: user.email,
+            displayName: 'Super Admin',
             role: 'Super Admin',
             lastLogin: new Date().toISOString(),
           });
+          // Try to upsert the Super Admin row so future logins work from DB
+          await supabase.from('admins').upsert({
+            id: user.id,
+            email: user.email,
+            display_name: 'Super Admin',
+            role: 'Super Admin',
+            last_login: new Date().toISOString(),
+          }, { onConflict: 'id' });
         } else {
           setAdminData(null);
         }
-      } else if (data) {
+      } else {
         setAdminData({
           id: data.id,
           email: data.email,
@@ -78,17 +93,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           role: data.role,
           lastLogin: data.last_login,
         });
+
+        // Update last_login timestamp
+        await supabase
+          .from('admins')
+          .update({ last_login: new Date().toISOString() })
+          .eq('id', user.id);
       }
     } catch (err) {
-      console.error("Error fetching admin data:", err);
+      console.error('Error fetching admin data:', err);
       setAdminData(null);
     } finally {
       setLoading(false);
     }
   };
 
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+    setAdminData(null);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, adminData, loading, isAdmin: !!adminData }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        adminData,
+        loading,
+        isAdmin: !!adminData,
+        isSuperAdmin: adminData?.role === 'Super Admin',
+        signOut,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
