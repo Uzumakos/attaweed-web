@@ -44,13 +44,13 @@ const Footer: React.FC = () => {
           {/* Brand */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-islamic-green">
-                <svg viewBox="0 0 24 24" className="w-8 h-8 fill-current">
-                  <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z" />
-                </svg>
-              </div>
+              <img
+                src="/images/logo.jpg"
+                alt="Mosquée At-Tawheed"
+                className="w-12 h-12 rounded-full object-cover border-2 border-white/20"
+              />
               <div>
-                <h2 className="font-serif font-bold text-xl leading-tight">ATTAWHEED</h2>
+                <h2 className="font-serif font-bold text-xl leading-tight">AT-TAWHEED</h2>
                 <p className="text-[10px] tracking-widest uppercase opacity-80">Mosquée de Pétion-Ville</p>
               </div>
             </Link>

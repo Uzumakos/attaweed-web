@@ -10,6 +10,8 @@
   --color-islamic-dark: #0F4F27;
   --color-islamic-gold: #C8A94A;
   --color-soft-black: #1A1A1A;
+
+  --breakpoint-xs: 480px;
 }
 
 @layer base {
