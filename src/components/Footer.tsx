@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
               />
               <div>
                 <h2 className="font-serif font-bold text-xl leading-tight">AT-TAWHEED</h2>
-                <p className="text-[10px] tracking-widest uppercase opacity-80">Mosquée de Pétion-Ville</p>
+                <p className="text-[10px] tracking-widest uppercase opacity-80">Mosquée de Bois-Verna</p>
               </div>
             </Link>
             <p className="text-gray-300 leading-relaxed">

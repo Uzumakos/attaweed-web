@@ -109,10 +109,10 @@ const SettingsSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {field('mosque_name', 'Nom de la mosquée', <Globe className="w-4 h-4" />, 'text', 'Mosquée Attawheed')}
           {field('founding_year', 'Année de fondation', <Globe className="w-4 h-4" />, 'number', '2010')}
-          {field('city', 'Ville', <MapPin className="w-4 h-4" />, 'text', 'Pétion-Ville')}
+          {field('city', 'Ville', <MapPin className="w-4 h-4" />, 'text', 'Bois-Verna')}
           {field('country', 'Pays', <Globe className="w-4 h-4" />, 'text', 'Haïti')}
         </div>
-        {field('address', 'Adresse complète', <MapPin className="w-4 h-4" />, 'text', '123 Rue Islam, Pétion-Ville, Haïti')}
+        {field('address', 'Adresse complète', <MapPin className="w-4 h-4" />, 'text', '123 Rue Islam, Bois-Verna, Haïti')}
         <div className="space-y-1">
           <label className="block text-sm font-bold text-gray-700">Description / À propos</label>
           <textarea rows={4} value={settings.about_text}

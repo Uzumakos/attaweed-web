@@ -17,7 +17,7 @@ const About: React.FC = () => {
   ];
 
   const timeline = [
-    { year: '2010', title: 'Fondation', description: 'Création de la communauté Attawheed par un petit groupe de fidèles à Pétion-Ville.' },
+    { year: '2010', title: 'Fondation', description: 'Création de la communauté Attawheed par un petit groupe de fidèles à Bois-Verna.' },
     { year: '2015', title: 'Inauguration', description: 'Ouverture officielle de la mosquée actuelle après 3 ans de travaux.' },
     { year: '2018', title: 'École Coranique', description: 'Lancement du programme éducatif pour les enfants et les nouveaux convertis.' },
     { year: '2022', title: 'Aide Sociale', description: 'Mise en place du programme de distribution alimentaire hebdomadaire.' },

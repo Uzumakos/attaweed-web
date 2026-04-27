@@ -60,7 +60,7 @@ const Header: React.FC = () => {
               MOSQUÉE AT-TAWHEED
             </h1>
             <p className="text-[9px] sm:text-[10px] tracking-widest uppercase text-gray-500">
-              Pétion-Ville, Haïti
+              Bois-Verna, Haïti
             </p>
           </div>
         </Link>

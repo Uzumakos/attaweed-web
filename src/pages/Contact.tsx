@@ -19,11 +19,11 @@ interface SiteSettings {
 }
 
 const DEFAULT_SETTINGS: SiteSettings = {
-  address: 'Pétion-Ville, Port-au-Prince, Haïti',
+  address: 'Bois-Verna, Port-au-Prince, Haïti',
   phone: '+509 1234-5678',
   email: 'contact@attawheedhaiti.org',
   whatsapp: '+509 8765-4321',
-  city: 'Pétion-Ville',
+  city: 'Bois-Verna',
   country: 'Haïti',
 };
 

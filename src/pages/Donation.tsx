@@ -21,7 +21,7 @@ const Donation: React.FC = () => {
     {
       id: 2,
       title: 'Programme d\'aide alimentaire',
-      description: 'Distribution hebdomadaire de colis alimentaires aux familles les plus démunies de Pétion-Ville.',
+      description: 'Distribution hebdomadaire de colis alimentaires aux familles les plus démunies de Bois-Verna.',
       goal: 200000,
       current: 120000,
       imageUrl: 'https://picsum.photos/seed/food/800/600',

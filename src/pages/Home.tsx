@@ -161,7 +161,7 @@ const Home: React.FC = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-soft-black mb-4">Horaires des Prières</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Retrouvez les horaires exacts des cinq prières quotidiennes à Pétion-Ville, Haïti.
+              Retrouvez les horaires exacts des cinq prières quotidiennes à Bois-Verna, Haïti.
               Date Hijri: 14 Ramadan 1447
             </p>
           </div>
