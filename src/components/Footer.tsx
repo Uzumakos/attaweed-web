@@ -97,11 +97,11 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-gray-300">
                 <MapPin className="w-5 h-5 text-islamic-gold shrink-0" />
-                <span>Pétion-Ville, Port-au-Prince, Haïti</span>
+                <span>96, Avenue Lamartinière Bois Verna, Port-au-Prince, Haïti</span>
               </li>
               <li className="flex items-center gap-3 text-gray-300">
                 <Phone className="w-5 h-5 text-islamic-gold shrink-0" />
-                <span>+509 1234-5678</span>
+                <span>+509 41 08 69 28 / 38 02 50 12</span>
               </li>
               <li className="flex items-center gap-3 text-gray-300">
                 <Mail className="w-5 h-5 text-islamic-gold shrink-0" />

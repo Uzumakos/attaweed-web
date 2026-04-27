@@ -21,12 +21,12 @@ interface SiteSettings {
 
 const defaultSettings: SiteSettings = {
   mosque_name: 'Mosquée Attawheed',
-  city: 'Pétion-Ville',
+  city: 'Port-au-Prince',
   country: 'Haïti',
-  address: 'Pétion-Ville, Haïti',
-  phone: '+509 XXXX XXXX',
+  address: '96, Avenue Lamartinière Bois Verna',
+  phone: '+509  41 08 69 28 / 38 02 50 12',
   email: 'contact@attawheed.com',
-  whatsapp: '+50912345678',
+  whatsapp: '+509 31 09 39 67',
   facebook_url: '',
   instagram_url: '',
   youtube_url: '',
