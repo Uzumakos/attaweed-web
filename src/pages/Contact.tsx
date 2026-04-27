@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Mail, Phone, MapPin, MessageCircle, 
@@ -7,6 +7,25 @@ import {
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import IslamicPattern from '../components/IslamicPattern';
+import { supabase } from '../supabase';
+
+interface SiteSettings {
+  address: string;
+  phone: string;
+  email: string;
+  whatsapp: string;
+  city: string;
+  country: string;
+}
+
+const DEFAULT_SETTINGS: SiteSettings = {
+  address: 'Pétion-Ville, Port-au-Prince, Haïti',
+  phone: '+509 1234-5678',
+  email: 'contact@attawheedhaiti.org',
+  whatsapp: '+509 8765-4321',
+  city: 'Pétion-Ville',
+  country: 'Haïti',
+};
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +36,15 @@ const Contact: React.FC = () => {
     message: ''
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [siteSettings, setSiteSettings] = useState<SiteSettings>(DEFAULT_SETTINGS);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      const { data } = await supabase.from('site_settings').select('address, phone, email, whatsapp, city, country').eq('id', 1).single();
+      if (data) setSiteSettings({ ...DEFAULT_SETTINGS, ...data });
+    };
+    fetchSettings();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,25 +59,25 @@ const Contact: React.FC = () => {
   const contactInfo = [
     {
       title: 'Adresse',
-      desc: 'Pétion-Ville, Port-au-Prince, Haïti',
+      desc: siteSettings.address || `${siteSettings.city}, ${siteSettings.country}`,
       icon: MapPin,
       color: 'bg-emerald-50 text-emerald-600',
     },
     {
       title: 'Téléphone',
-      desc: '+509 1234-5678',
+      desc: siteSettings.phone,
       icon: Phone,
       color: 'bg-amber-50 text-amber-600',
     },
     {
       title: 'Email',
-      desc: 'contact@attawheedhaiti.org',
+      desc: siteSettings.email,
       icon: Mail,
       color: 'bg-blue-50 text-blue-600',
     },
     {
       title: 'WhatsApp',
-      desc: '+509 8765-4321',
+      desc: siteSettings.whatsapp,
       icon: MessageCircle,
       color: 'bg-green-50 text-green-600',
     },
@@ -260,7 +288,7 @@ const Contact: React.FC = () => {
               <div className="text-center space-y-4">
                 <MapPin className="w-16 h-16 text-islamic-green mx-auto" />
                 <p className="text-xl font-serif font-bold text-soft-black">Carte Google Maps Interactive</p>
-                <p className="text-gray-500">Pétion-Ville, Port-au-Prince, Haïti</p>
+                <p className="text-gray-500">{siteSettings.address || `${siteSettings.city}, ${siteSettings.country}`}</p>
                 <a 
                   href="https://maps.google.com" 
                   target="_blank" 
